@@ -214,6 +214,7 @@ export default function Home() {
       </div>
       <footer className="flex justify-between px-12 py-6">
         <a
+          target="_blank"
           href="https://www.instagram.com/clubbie.club"
           className="text-gray-100 transition-colors duration-75 ease-in-out hover:text-gray-200"
         >
