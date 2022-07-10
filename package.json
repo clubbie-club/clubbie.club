@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.6.6",
     "@splitbee/web": "^0.3.0",
     "framer-motion": "^6.4.3",
     "next": "12.2.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hot-toast": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "18.0.3",

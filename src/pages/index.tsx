@@ -1,30 +1,79 @@
-import { Disclosure } from "@headlessui/react";
 import splitbee from "@splitbee/web";
-import { FormEvent, useRef } from "react";
+import { m } from "framer-motion";
+import { FormEvent, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
+const handleLinkClick = (destination: string) => {
+  splitbee.track("Link click", {
+    destination,
+  });
+};
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-  const handleLinkClick = (destination: string) => {
-    splitbee.track("Link click", {
-      destination,
-    });
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
     event.preventDefault();
     const value = emailInputRef.current?.value;
 
-    splitbee.track("Form submit", {
-      email: value,
-    });
+    const _submitData = async () => {
+      if (value) {
+        await splitbee.track("Form submit", {
+          email: value,
+        });
+        await splitbee.user.set({
+          userId: value,
+        });
+        emailInputRef.current.value = "";
+        setIsSubmitting(false);
+      }
+    };
+
+    toast.promise(
+      _submitData(),
+      {
+        loading: "Отправка...",
+        success: "Мы скоро свяжемся",
+        error: "Упс, что-то пошло не так",
+      },
+      {
+        style: {
+          backgroundColor: "white",
+          color: "#18181b",
+          fontWeight: 700,
+          fontFamily: "Raleway, sans-serif",
+          borderRadius: 16,
+          paddingTop: 12,
+          paddingBottom: 12,
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+        iconTheme: {
+          primary: "#18181b",
+          secondary: "#f4f4f5",
+        },
+      }
+    );
   };
 
   return (
     <div>
+      <Toaster />
       <div className="flex min-h-screen flex-col px-4 py-6 sm:px-12">
         {/* Header */}
-        <header className="hidden items-center justify-between sm:flex">
+        <m.header
+          initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.3,
+          }}
+          className="hidden items-center justify-between sm:flex"
+        >
           <span className="font-semibold">clubbie/club</span>
           <a
             href="#contact"
@@ -33,19 +82,40 @@ export default function Home() {
           >
             Стать партнерами
           </a>
-        </header>
+        </m.header>
         {/* /Header */}
         <main className="mt-12 flex flex-1 flex-col">
           {/* Hero */}
-          <h1 className="text-[32px] font-bold leading-tight sm:text-[42px]">
+          <m.h1
+            initial={{
+              x: "-100%",
+              opacity: 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.4,
+            }}
+            className="text-[32px] font-bold leading-tight sm:text-[42px]"
+          >
             Разработка - это исскуство, <br className="hidden sm:inline" /> а мы
             черепашки ниндзя
-          </h1>
-          <h2 className="mt-3 text-sm font-medium leading-snug sm:mt-6 sm:text-lg">
+          </m.h1>
+          <m.h2
+            initial={{
+              x: "-100%",
+              opacity: 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.4,
+              delay: 0.1,
+            }}
+            className="mt-3 text-sm font-medium leading-snug sm:mt-6 sm:text-lg"
+          >
             Clubbie.club - это цифровое агенство, предоставляющее услуги
             <br className="hidden sm:inline" />
             по созданию веб-сайтов и веб-приложений
-          </h2>
+          </m.h2>
           <a
             href="#contact"
             onClick={() => handleLinkClick("Contact form")}
@@ -57,7 +127,17 @@ export default function Home() {
           {/* Cards */}
           <div className="mt-12 flex flex-1">
             <div className="grid flex-1 grid-cols-1 lg:grid-cols-3">
-              <div className="flex flex-col justify-between rounded-3xl bg-fuchsia-300 p-6 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc] lg:col-span-2">
+              <m.div
+                initial={{
+                  x: "-66%",
+                  opacity: 0,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.35,
+                }}
+                className="flex flex-col justify-between rounded-3xl bg-fuchsia-300 p-6 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc] lg:col-span-2"
+              >
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     01.
@@ -88,23 +168,29 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <Disclosure>
-                    <h3>
-                      <Disclosure.Button className="mt-3 text-left text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                        Веб-сайты и веб-приложения
-                        <br className="hidden sm:inline" /> любой сложности
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel>
-                      <p className="mt-2 font-medium text-zinc-800">
-                        Наша команда готова выполнить любой ваш заказ, от
-                        одностраничных лендингов до комплексных приложений
-                      </p>
-                    </Disclosure.Panel>
-                  </Disclosure>
+                  <h3 className="mt-3 text-left text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Веб-сайты и веб-приложения
+                    <br className="hidden sm:inline" /> любой сложности
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы готовы выполнить любой ваш заказ,
+                    <br className="hidden sm:inline" /> от одностраничных
+                    лендингов до комплексных приложений
+                  </p>
                 </div>
-              </div>
-              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4">
+              </m.div>
+              <m.div
+                initial={{
+                  y: "-50%",
+                  opacity: 0,
+                }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.35,
+                  delay: 0.15,
+                }}
+                className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4"
+              >
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     02.
@@ -130,12 +216,28 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Прозрачные методы <br className="hidden sm:inline" />{" "}
-                  разработки
-                </h3>
-              </div>
-              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4">
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Прозрачные методы <br className="hidden sm:inline" />
+                    разработки
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы сопровождаем вас на каждом этапе разработки
+                  </p>
+                </div>
+              </m.div>
+              <m.div
+                initial={{
+                  y: "50%",
+                  opacity: 0,
+                }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.35,
+                  delay: 0.3,
+                }}
+                className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4"
+              >
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     03.
@@ -157,12 +259,30 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Индивидуальный подход <br className="hidden sm:inline" /> к
-                  проектам
-                </h3>
-              </div>
-              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4">
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Индивидуальный подход <br className="hidden sm:inline" /> к
+                    проектам
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы предлагаем наилучшие варианты отталкиваясь
+                    <br className="hidden sm:inline" /> от ваших ресурсов и
+                    желаний
+                  </p>
+                </div>
+              </m.div>
+              <m.div
+                initial={{
+                  x: "50%",
+                  opacity: 0,
+                }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.35,
+                  delay: 0.45,
+                }}
+                className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4"
+              >
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     04.
@@ -184,18 +304,36 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Передовые технологии <br className="hidden sm:inline" />
-                  веб-разработки
-                </h3>
-              </div>
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Передовые технологии <br className="hidden sm:inline" />
+                    веб-разработки
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы всегда следим за трендами инструментов разработки,
+                    <br className="hidden sm:inline" />
+                    применяя проверенные и современные решения
+                  </p>
+                </div>
+              </m.div>
             </div>
           </div>
           {/* /Cards */}
         </main>
       </div>
       {/* Form */}
-      <div className="my-16 max-w-2xl px-4 sm:mx-auto sm:my-36 md:px-0">
+      <m.div
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.3,
+          delay: 0.15,
+        }}
+        className="my-16 max-w-2xl px-4 sm:mx-auto sm:my-36 md:px-0"
+      >
         <h3 className="text-left text-[32px] font-bold sm:text-center">
           Мы всегда на связи
         </h3>
@@ -209,22 +347,36 @@ export default function Home() {
         >
           <input
             required
+            disabled={isSubmitting}
             ref={emailInputRef}
-            className="flex-1 rounded-2xl border border-zinc-800 bg-zinc-900 px-8 py-4 font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
+            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-sans font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:font-raleway placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none disabled:cursor-not-allowed"
             placeholder="Ваш e-mail адрес..."
             type="email"
           />
           <button
             type="submit"
-            className="mt-4 rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] focus:shadow-[0_0_0_4px_#FFFFFF] focus:outline-none sm:mt-0 sm:ml-4 sm:hover:shadow-[0_0_0_6px_#FFFFFF] sm:focus:shadow-[0_0_0_6px_#FFFFFF]"
+            disabled={isSubmitting}
+            className="mt-4 rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] focus:shadow-[0_0_0_4px_#FFFFFF] focus:outline-none disabled:cursor-wait disabled:hover:shadow-none sm:mt-0 sm:ml-4 sm:hover:shadow-[0_0_0_6px_#FFFFFF] sm:focus:shadow-[0_0_0_6px_#FFFFFF]"
           >
             Отправить
           </button>
         </form>
-      </div>
+      </m.div>
       {/* /Form */}
       {/* Footer */}
-      <footer className="mx-3 mb-6 flex items-center justify-between sm:mx-12">
+      <m.footer
+        initial={{
+          y: "100%",
+          opacity: 0,
+        }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.3,
+          delay: 0.3,
+        }}
+        className="mx-3 mb-6 flex items-center justify-between sm:mx-12"
+      >
         <div className="flex">
           <a
             target="_blank"
@@ -274,7 +426,7 @@ export default function Home() {
           </a>
         </div>
         <span className="text-sm text-gray-100 sm:text-base">2022</span>
-      </footer>
+      </m.footer>
       {/* /Footer */}
     </div>
   );
