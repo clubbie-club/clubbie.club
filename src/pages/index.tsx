@@ -1,4 +1,3 @@
-import { Disclosure } from "@headlessui/react";
 import splitbee from "@splitbee/web";
 import { FormEvent, useRef } from "react";
 
@@ -17,6 +16,10 @@ export default function Home() {
 
     splitbee.track("Form submit", {
       email: value,
+    });
+
+    splitbee.user.set({
+      userId: value,
     });
   };
 
@@ -88,20 +91,15 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <Disclosure>
-                    <h3>
-                      <Disclosure.Button className="mt-3 text-left text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                        Веб-сайты и веб-приложения
-                        <br className="hidden sm:inline" /> любой сложности
-                      </Disclosure.Button>
-                    </h3>
-                    <Disclosure.Panel>
-                      <p className="mt-2 font-medium text-zinc-800">
-                        Наша команда готова выполнить любой ваш заказ, от
-                        одностраничных лендингов до комплексных приложений
-                      </p>
-                    </Disclosure.Panel>
-                  </Disclosure>
+                  <h3 className="mt-3 text-left text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Веб-сайты и веб-приложения
+                    <br className="hidden sm:inline" /> любой сложности
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы готовы выполнить любой ваш заказ,
+                    <br className="hidden sm:inline" /> от одностраничных
+                    лендингов до комплексных приложений
+                  </p>
                 </div>
               </div>
               <div className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4">
@@ -130,10 +128,15 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Прозрачные методы <br className="hidden sm:inline" />{" "}
-                  разработки
-                </h3>
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Прозрачные методы <br className="hidden sm:inline" />
+                    разработки
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы сопровождаем вас на каждом этапе разработки
+                  </p>
+                </div>
               </div>
               <div className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4">
                 <div className="flex justify-between">
@@ -157,10 +160,17 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Индивидуальный подход <br className="hidden sm:inline" /> к
-                  проектам
-                </h3>
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Индивидуальный подход <br className="hidden sm:inline" /> к
+                    проектам
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы предлагаем наилучшие варианты отталкиваясь
+                    <br className="hidden sm:inline" /> от ваших ресурсов и
+                    желаний
+                  </p>
+                </div>
               </div>
               <div className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4">
                 <div className="flex justify-between">
@@ -184,10 +194,17 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
-                  Передовые технологии <br className="hidden sm:inline" />
-                  веб-разработки
-                </h3>
+                <div>
+                  <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                    Передовые технологии <br className="hidden sm:inline" />
+                    веб-разработки
+                  </h3>
+                  <p className="mt-2 font-medium text-zinc-800">
+                    Мы всегда следим за трендами инструментов разработки,
+                    <br className="hidden sm:inline" />
+                    применяя проверенные и современные решения
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -210,7 +227,7 @@ export default function Home() {
           <input
             required
             ref={emailInputRef}
-            className="flex-1 rounded-2xl border border-zinc-800 bg-zinc-900 px-8 py-4 font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
+            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
             placeholder="Ваш e-mail адрес..."
             type="email"
           />
