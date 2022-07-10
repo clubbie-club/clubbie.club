@@ -1,43 +1,6 @@
+import * as Accordion from "@radix-ui/react-accordion";
 import splitbee from "@splitbee/web";
 import { FormEvent, useRef } from "react";
-
-{
-  /* <div className="flex-[2] bg-fuchsia-300 p-6 rounded-3xl">
-  <div className="flex justify-between">
-    <h3 className="text-xl font-medium text-zinc-900">
-      Веб-сайты и веб-приложения <br /> любой сложности
-    </h3>
-    <svg
-      width="36"
-      height="36"
-      viewBox="0 0 36 36"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M37 12C37 8.8174 35.7006 5.76516 33.3876 3.51472C31.0747 1.26428 27.9377 7.52911e-07 24.6667 5.12632e-07C21.3957 2.72352e-07 18.2586 1.26428 15.9457 3.51472C13.6327 5.76515 12.3333 8.8174 12.3333 12L37 12Z"
-        fill="#18181B"
-      />
-      <path
-        d="M24.6667 36C27.9377 36 31.0747 34.7357 33.3876 32.4853C35.7006 30.2348 37 27.1826 37 24C37 20.8174 35.7006 17.7652 33.3876 15.5147C31.0747 13.2643 27.9377 12 24.6667 12L24.6667 36Z"
-        fill="#18181B"
-      />
-      <path
-        d="M1.09045e-06 24C8.0449e-07 27.1826 1.2994 30.2348 3.61235 32.4853C5.9253 34.7357 9.06233 36 12.3333 36C15.6043 36 18.7414 34.7357 21.0543 32.4853C23.3673 30.2348 24.6667 27.1826 24.6667 24L1.09045e-06 24Z"
-        fill="#18181B"
-      />
-      <path
-        d="M12.3333 0C9.06233 1.39116e-07 5.9253 1.26428 3.61235 3.51472C1.2994 5.76515 1.03974e-07 8.8174 0 12C-1.03974e-07 15.1826 1.2994 18.2348 3.61235 20.4853C5.9253 22.7357 9.06233 24 12.3333 24L12.3333 0Z"
-        fill="#18181B"
-      />
-    </svg>
-  </div>
-  <p className="mt-3 font-medium text-zinc-800">
-    Наша команда готова выполнить любой ваш заказ, <br /> от одностраничных
-    лендингов до комплексных приложений
-  </p>
-</div>; */
-}
 
 export default function Home() {
   const emailInputRef = useRef<HTMLInputElement>(null);
@@ -59,22 +22,22 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex flex-col min-h-screen px-4 py-6 sm:px-12">
+      <div className="flex min-h-screen flex-col px-4 py-6 sm:px-12">
         {/* Header */}
-        <header className="items-center justify-between hidden sm:flex">
+        <header className="hidden items-center justify-between sm:flex">
           <span className="font-semibold">clubbie/club</span>
           <a
             href="#contact"
             onClick={() => handleLinkClick("Contact form")}
-            className="px-8 py-4 font-bold bg-white text-zinc-900 rounded-2xl shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_8px_#FFFFFF]"
+            className="rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_8px_#FFFFFF] focus:shadow-[0_0_0_8px_#FFFFFF] focus:outline-none"
           >
             Стать партнерами
           </a>
         </header>
         {/* /Header */}
-        <main className="flex flex-col flex-1 mt-12">
+        <main className="mt-12 flex flex-1 flex-col">
           {/* Hero */}
-          <h1 className="font-bold text-[32px] sm:text-[42px] leading-tight">
+          <h1 className="text-[32px] font-bold leading-tight sm:text-[42px]">
             Разработка - это исскуство, <br className="hidden sm:inline" /> а мы
             черепашки ниндзя
           </h1>
@@ -86,15 +49,15 @@ export default function Home() {
           <a
             href="#contact"
             onClick={() => handleLinkClick("Contact form")}
-            className="sm:hidden mt-8 text-center px-8 py-4 font-bold bg-white text-zinc-900 rounded-2xl shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_6px_#FFFFFF]"
+            className="mt-8 rounded-2xl bg-white px-8 py-4 text-center font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_6px_#FFFFFF] focus:shadow-[0_0_0_6px_#FFFFFF] focus:outline-none sm:hidden"
           >
             Стать партнерами
           </a>
           {/* /Hero */}
           {/* Cards */}
-          <div className="flex flex-1 mt-12">
+          <div className="mt-12 flex flex-1">
             <div className="grid flex-1 grid-cols-1 lg:grid-cols-3">
-              <div className="flex flex-col justify-between lg:col-span-2 p-6 rounded-3xl bg-fuchsia-300 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc]">
+              <div className="flex flex-col justify-between rounded-3xl bg-fuchsia-300 p-6 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc] lg:col-span-2">
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     01.
@@ -124,12 +87,8 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium sm:text-xl text-zinc-900 sm:mt-1 lg:mt-0">
-                  Веб-сайты и веб-приложения <br className="hidden sm:inline" />{" "}
-                  любой сложности
-                </h3>
               </div>
-              <div className="flex flex-col justify-between p-6 mt-3 lg:mt-0 lg:ml-4 rounded-3xl bg-lime-300 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264]">
+              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4">
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     02.
@@ -155,12 +114,12 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium sm:text-xl text-zinc-900 sm:mt-1 lg:mt-0">
+                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
                   Прозрачные методы <br className="hidden sm:inline" />{" "}
                   разработки
                 </h3>
               </div>
-              <div className="flex flex-col justify-between p-6 mt-3 lg:mt-4 rounded-3xl bg-amber-400 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24]">
+              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4">
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     03.
@@ -182,12 +141,12 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium sm:text-xl text-zinc-900 sm:mt-1 lg:mt-0">
+                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
                   Индивидуальный подход <br className="hidden sm:inline" /> к
                   проектам
                 </h3>
               </div>
-              <div className="flex flex-col justify-between lg:col-span-2 p-6 mt-3 lg:mt-4 lg:ml-4 bg-blue-300 rounded-3xl shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd]  sm:hover:shadow-[0_0_0_4px_#93c5fd]">
+              <div className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4">
                 <div className="flex justify-between">
                   <span className="text-xl font-semibold text-zinc-900">
                     04.
@@ -209,7 +168,7 @@ export default function Home() {
                     />
                   </svg>
                 </div>
-                <h3 className="mt-3 text-lg font-medium sm:text-xl text-zinc-900 sm:mt-1 lg:mt-0">
+                <h3 className="mt-3 text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
                   Передовые технологии <br className="hidden sm:inline" />
                   веб-разработки
                 </h3>
@@ -220,28 +179,28 @@ export default function Home() {
         </main>
       </div>
       {/* Form */}
-      <div className="max-w-2xl px-4 my-16 md:px-0 sm:mx-auto sm:my-36">
-        <h3 className="text-[32px] font-bold text-left sm:text-center">
+      <div className="my-16 max-w-2xl px-4 sm:mx-auto sm:my-36 md:px-0">
+        <h3 className="text-left text-[32px] font-bold sm:text-center">
           Мы всегда на связи
         </h3>
-        <p className="mt-3 text-lg font-medium text-left sm:text-center text-zinc-100">
+        <p className="mt-3 text-left text-lg font-medium text-zinc-100 sm:text-center">
           Оставьте заявку и мы свяжемся с вами в ближайшее время
         </p>
         <form
-          className="flex flex-col mt-8 sm:flex-row"
+          className="mt-8 flex flex-col sm:flex-row"
           id="contact"
           onSubmit={handleSubmit}
         >
           <input
             required
             ref={emailInputRef}
-            className="flex-1 px-8 py-4 font-medium transition-colors duration-150 ease-in-out border rounded-2xl border-zinc-800 bg-zinc-900 placeholder:text-neutral-500 text-zinc-100 focus:outline-none focus:border-zinc-700"
+            className="flex-1 rounded-2xl border border-zinc-800 bg-zinc-900 px-8 py-4 font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
             placeholder="Ваш e-mail адрес..."
             type="email"
           />
           <button
             type="submit"
-            className="px-8 py-4 mt-4 sm:mt-0 sm:ml-4 font-bold bg-white text-zinc-900 rounded-2xl shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] sm:hover:shadow-[0_0_0_6px_#FFFFFF]"
+            className="mt-4 rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] focus:shadow-[0_0_0_4px_#FFFFFF] focus:outline-none sm:mt-0 sm:ml-4 sm:hover:shadow-[0_0_0_6px_#FFFFFF] sm:focus:shadow-[0_0_0_6px_#FFFFFF]"
           >
             Отправить
           </button>
@@ -249,7 +208,7 @@ export default function Home() {
       </div>
       {/* /Form */}
       {/* Footer */}
-      <footer className="flex items-center justify-between mx-3 mb-6 sm:mx-12">
+      <footer className="mx-3 mb-6 flex items-center justify-between sm:mx-12">
         <div className="flex">
           <a
             target="_blank"
