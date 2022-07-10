@@ -1,32 +1,67 @@
 import splitbee from "@splitbee/web";
 import { m } from "framer-motion";
-import { FormEvent, useRef } from "react";
+import { FormEvent, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+
+const handleLinkClick = (destination: string) => {
+  splitbee.track("Link click", {
+    destination,
+  });
+};
 
 export default function Home() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
-  const handleLinkClick = (destination: string) => {
-    splitbee.track("Link click", {
-      destination,
-    });
-  };
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
     event.preventDefault();
     const value = emailInputRef.current?.value;
 
-    splitbee.track("Form submit", {
-      email: value,
-    });
+    const _submitData = async () => {
+      if (value) {
+        await splitbee.track("Form submit", {
+          email: value,
+        });
+        await splitbee.user.set({
+          userId: value,
+        });
+        emailInputRef.current.value = "";
+        setIsSubmitting(false);
+      }
+    };
 
-    splitbee.user.set({
-      userId: value,
-    });
+    toast.promise(
+      _submitData(),
+      {
+        loading: "Отправка...",
+        success: "Мы скоро свяжемся",
+        error: "Упс, что-то пошло не так",
+      },
+      {
+        style: {
+          backgroundColor: "white",
+          color: "#18181b",
+          fontWeight: 700,
+          fontFamily: "Raleway, sans-serif",
+          borderRadius: 16,
+          paddingTop: 12,
+          paddingBottom: 12,
+          paddingLeft: 16,
+          paddingRight: 16,
+        },
+        iconTheme: {
+          primary: "#18181b",
+          secondary: "#f4f4f5",
+        },
+      }
+    );
   };
 
   return (
     <div>
-      <div className="relative flex min-h-screen flex-col px-4 py-6 sm:px-12">
+      <Toaster />
+      <div className="flex min-h-screen flex-col px-4 py-6 sm:px-12">
         {/* Header */}
         <m.header
           initial={{
@@ -312,14 +347,16 @@ export default function Home() {
         >
           <input
             required
+            disabled={isSubmitting}
             ref={emailInputRef}
-            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-sans font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:font-raleway placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
+            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-sans font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:font-raleway placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none disabled:cursor-not-allowed"
             placeholder="Ваш e-mail адрес..."
             type="email"
           />
           <button
             type="submit"
-            className="mt-4 rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] focus:shadow-[0_0_0_4px_#FFFFFF] focus:outline-none sm:mt-0 sm:ml-4 sm:hover:shadow-[0_0_0_6px_#FFFFFF] sm:focus:shadow-[0_0_0_6px_#FFFFFF]"
+            disabled={isSubmitting}
+            className="mt-4 rounded-2xl bg-white px-8 py-4 font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_4px_#FFFFFF] focus:shadow-[0_0_0_4px_#FFFFFF] focus:outline-none disabled:cursor-wait disabled:hover:shadow-none sm:mt-0 sm:ml-4 sm:hover:shadow-[0_0_0_6px_#FFFFFF] sm:focus:shadow-[0_0_0_6px_#FFFFFF]"
           >
             Отправить
           </button>
