@@ -1,5 +1,5 @@
 import splitbee from "@splitbee/web";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { FormEvent, useRef } from "react";
 
 export default function Home() {
@@ -27,27 +27,18 @@ export default function Home() {
   return (
     <div>
       <div className="relative flex min-h-screen flex-col px-4 py-6 sm:px-12">
-        <a
-          href="#contact"
-          className="absolute left-1/2 -bottom-2  z-50 -translate-x-1/2 transform animate-bounce rounded-full bg-black bg-opacity-10 p-2 backdrop-blur-lg"
-        >
-          <svg
-            width="36"
-            height="36"
-            viewBox="0 0 36 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M18.0002 4.8C18.6629 4.8 19.2002 5.33727 19.2002 6V27.103L26.7516 19.5515C27.2203 19.0828 27.9801 19.0828 28.4488 19.5515C28.9173 20.0201 28.9173 20.7799 28.4488 21.2485L18.8487 30.8486C18.6237 31.0735 18.3185 31.2 18.0002 31.2C17.6819 31.2 17.3767 31.0735 17.1517 30.8486L7.55168 21.2485C7.08303 20.7799 7.08303 20.0201 7.55168 19.5515C8.02031 19.0828 8.7801 19.0828 9.24872 19.5515L16.8002 27.103V6C16.8002 5.33727 17.3375 4.8 18.0002 4.8Z"
-              fill="white"
-            />
-          </svg>
-        </a>
         {/* Header */}
-        <header className="hidden items-center justify-between sm:flex">
+        <m.header
+          initial={{
+            y: "-100%",
+            opacity: 0,
+          }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.3,
+          }}
+          className="hidden items-center justify-between sm:flex"
+        >
           <span className="font-semibold">clubbie/club</span>
           <a
             href="#contact"
@@ -56,19 +47,40 @@ export default function Home() {
           >
             Стать партнерами
           </a>
-        </header>
+        </m.header>
         {/* /Header */}
         <main className="mt-12 flex flex-1 flex-col">
           {/* Hero */}
-          <h1 className="text-[32px] font-bold leading-tight sm:text-[42px]">
+          <m.h1
+            initial={{
+              x: "-100%",
+              opacity: 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.4,
+            }}
+            className="text-[32px] font-bold leading-tight sm:text-[42px]"
+          >
             Разработка - это исскуство, <br className="hidden sm:inline" /> а мы
             черепашки ниндзя
-          </h1>
-          <h2 className="mt-3 text-sm font-medium leading-snug sm:mt-6 sm:text-lg">
+          </m.h1>
+          <m.h2
+            initial={{
+              x: "-100%",
+              opacity: 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.4,
+              delay: 0.1,
+            }}
+            className="mt-3 text-sm font-medium leading-snug sm:mt-6 sm:text-lg"
+          >
             Clubbie.club - это цифровое агенство, предоставляющее услуги
             <br className="hidden sm:inline" />
             по созданию веб-сайтов и веб-приложений
-          </h2>
+          </m.h2>
           <a
             href="#contact"
             onClick={() => handleLinkClick("Contact form")}
@@ -80,7 +92,7 @@ export default function Home() {
           {/* Cards */}
           <div className="mt-12 flex flex-1">
             <div className="grid flex-1 grid-cols-1 lg:grid-cols-3">
-              <motion.div
+              <m.div
                 initial={{
                   x: "-66%",
                   opacity: 0,
@@ -131,8 +143,8 @@ export default function Home() {
                     лендингов до комплексных приложений
                   </p>
                 </div>
-              </motion.div>
-              <motion.div
+              </m.div>
+              <m.div
                 initial={{
                   y: "-50%",
                   opacity: 0,
@@ -178,8 +190,8 @@ export default function Home() {
                     Мы сопровождаем вас на каждом этапе разработки
                   </p>
                 </div>
-              </motion.div>
-              <motion.div
+              </m.div>
+              <m.div
                 initial={{
                   y: "50%",
                   opacity: 0,
@@ -223,8 +235,8 @@ export default function Home() {
                     желаний
                   </p>
                 </div>
-              </motion.div>
-              <motion.div
+              </m.div>
+              <m.div
                 initial={{
                   x: "50%",
                   opacity: 0,
@@ -268,14 +280,25 @@ export default function Home() {
                     применяя проверенные и современные решения
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
           </div>
           {/* /Cards */}
         </main>
       </div>
       {/* Form */}
-      <div className="my-16 max-w-2xl px-4 sm:mx-auto sm:my-36 md:px-0">
+      <m.div
+        initial={{
+          opacity: 0,
+        }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.3,
+          delay: 0.15,
+        }}
+        className="my-16 max-w-2xl px-4 sm:mx-auto sm:my-36 md:px-0"
+      >
         <h3 className="text-left text-[32px] font-bold sm:text-center">
           Мы всегда на связи
         </h3>
@@ -290,7 +313,7 @@ export default function Home() {
           <input
             required
             ref={emailInputRef}
-            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
+            className="flex-1 rounded-2xl border-2 border-zinc-800 bg-zinc-900 px-8 py-4 font-sans font-medium text-zinc-100 transition-colors duration-150 ease-in-out placeholder:font-raleway placeholder:text-neutral-500 focus:border-zinc-700 focus:outline-none"
             placeholder="Ваш e-mail адрес..."
             type="email"
           />
@@ -301,10 +324,22 @@ export default function Home() {
             Отправить
           </button>
         </form>
-      </div>
+      </m.div>
       {/* /Form */}
       {/* Footer */}
-      <footer className="mx-3 mb-6 flex items-center justify-between sm:mx-12">
+      <m.footer
+        initial={{
+          y: "100%",
+          opacity: 0,
+        }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 0.3,
+          delay: 0.3,
+        }}
+        className="mx-3 mb-6 flex items-center justify-between sm:mx-12"
+      >
         <div className="flex">
           <a
             target="_blank"
@@ -354,7 +389,7 @@ export default function Home() {
           </a>
         </div>
         <span className="text-sm text-gray-100 sm:text-base">2022</span>
-      </footer>
+      </m.footer>
       {/* /Footer */}
     </div>
   );
