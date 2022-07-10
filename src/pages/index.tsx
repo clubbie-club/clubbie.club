@@ -1,5 +1,7 @@
+import { Disclosure } from "@headlessui/react";
 import * as Accordion from "@radix-ui/react-accordion";
 import splitbee from "@splitbee/web";
+import { motion } from "framer-motion";
 import { FormEvent, useRef } from "react";
 
 export default function Home() {
@@ -86,6 +88,22 @@ export default function Home() {
                       fill="#18181B"
                     />
                   </svg>
+                </div>
+                <div>
+                  <Disclosure>
+                    <h3>
+                      <Disclosure.Button className="mt-3 text-left text-lg font-medium text-zinc-900 sm:mt-1 sm:text-xl lg:mt-0">
+                        Веб-сайты и веб-приложения
+                        <br className="hidden sm:inline" /> любой сложности
+                      </Disclosure.Button>
+                    </h3>
+                    <Disclosure.Panel>
+                      <p className="mt-2 font-medium text-zinc-800">
+                        Наша команда готова выполнить любой ваш заказ, от
+                        одностраничных лендингов до комплексных приложений
+                      </p>
+                    </Disclosure.Panel>
+                  </Disclosure>
                 </div>
               </div>
               <div className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4">
