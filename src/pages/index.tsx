@@ -1,7 +1,5 @@
 import { Disclosure } from "@headlessui/react";
-import * as Accordion from "@radix-ui/react-accordion";
 import splitbee from "@splitbee/web";
-import { motion } from "framer-motion";
 import { FormEvent, useRef } from "react";
 
 export default function Home() {
