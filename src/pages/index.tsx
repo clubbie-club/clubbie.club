@@ -3,6 +3,7 @@ import { m } from "framer-motion";
 import Head from "next/head";
 import { FormEvent, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { useDetectDevice } from "@/lib/hooks/useDetectDevice";
 
 const handleLinkClick = (destination: string) => {
   splitbee.track("Link click", {
@@ -11,6 +12,8 @@ const handleLinkClick = (destination: string) => {
 };
 
 export default function Home() {
+  const { isMobile } = useDetectDevice();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
 
@@ -160,7 +163,7 @@ export default function Home() {
                   x: "-66%",
                   opacity: 0,
                 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.5,
                   delay: 0.5,
@@ -210,10 +213,16 @@ export default function Home() {
               </m.div>
               <m.div
                 initial={{
-                  y: "-50%",
+                  ...(isMobile()
+                    ? {
+                        x: "50%",
+                      }
+                    : {
+                        y: "-50%",
+                      }),
                   opacity: 0,
                 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
                 transition={{
                   duration: 0.4,
                   delay: 0.8,
@@ -257,10 +266,16 @@ export default function Home() {
               </m.div>
               <m.div
                 initial={{
-                  y: "50%",
+                  ...(isMobile()
+                    ? {
+                        x: "-50%",
+                      }
+                    : {
+                        y: "50%",
+                      }),
                   opacity: 0,
                 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0, x: 0 }}
                 transition={{
                   duration: 0.4,
                   delay: 1,
@@ -302,10 +317,10 @@ export default function Home() {
               </m.div>
               <m.div
                 initial={{
-                  x: "50%",
+                  x: "66%",
                   opacity: 0,
                 }}
-                animate={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 transition={{
                   duration: 0.5,
                   delay: 1.2,
