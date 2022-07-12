@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html{
-  @apply bg-black scroll-smooth lining-nums
+  @apply bg-black scroll-smooth lining-nums overflow-hidden
 }
 
 #__next {
