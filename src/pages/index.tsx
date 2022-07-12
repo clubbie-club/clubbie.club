@@ -1,5 +1,6 @@
 import splitbee from "@splitbee/web";
 import { m } from "framer-motion";
+import Head from "next/head";
 import { FormEvent, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -60,6 +61,23 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <meta name="title" content="Clubbie.club" />
+        <link rel="icon" href="/favicon.svg" />
+        <meta
+          name="description"
+          content="Цифровое агенство, предоставляющее услуги по созданию веб-сайтов и веб-приложений"
+        />
+        <meta
+          name="keywords"
+          content="агенство,разработка,веб-сайт,веб-приложения"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="language" content="Russian" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="author" content="Clubbie.club" />
+      </Head>
       <Toaster />
       <div className="flex min-h-screen flex-col px-4 py-6 sm:px-12">
         {/* Header */}
