@@ -164,9 +164,10 @@ export default function Home() {
                   opacity: 0,
                 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{
                   duration: 0.5,
-                  delay: 0.5,
+                  delay: isMobile() ? 0 : 0.5,
                 }}
                 className="flex flex-col justify-between rounded-3xl bg-fuchsia-300 p-6 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc] lg:col-span-2"
               >
@@ -223,9 +224,10 @@ export default function Home() {
                   opacity: 0,
                 }}
                 whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true }}
                 transition={{
                   duration: 0.4,
-                  delay: 0.8,
+                  delay: isMobile() ? 0 : 0.8,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4"
               >
@@ -276,9 +278,10 @@ export default function Home() {
                   opacity: 0,
                 }}
                 whileInView={{ opacity: 1, y: 0, x: 0 }}
+                viewport={{ once: true }}
                 transition={{
                   duration: 0.4,
-                  delay: 1,
+                  delay: isMobile() ? 0 : 1,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4"
               >
@@ -321,9 +324,10 @@ export default function Home() {
                   opacity: 0,
                 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{
                   duration: 0.5,
-                  delay: 1.2,
+                  delay: isMobile() ? 0 : 1.2,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4"
               >
