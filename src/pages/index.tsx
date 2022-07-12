@@ -70,7 +70,7 @@ export default function Home() {
           }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.3,
+            duration: 0.4,
           }}
           className="hidden items-center justify-between sm:flex"
         >
@@ -93,7 +93,8 @@ export default function Home() {
             }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-              duration: 0.4,
+              duration: 0.5,
+              delay: 0.1,
             }}
             className="text-[32px] font-bold leading-tight sm:text-[42px]"
           >
@@ -107,8 +108,8 @@ export default function Home() {
             }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-              duration: 0.4,
-              delay: 0.1,
+              duration: 0.5,
+              delay: 0.2,
             }}
             className="mt-3 text-sm font-medium leading-snug sm:mt-6 sm:text-lg"
           >
@@ -134,7 +135,8 @@ export default function Home() {
                 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.35,
+                  duration: 0.5,
+                  delay: 0.5,
                 }}
                 className="flex flex-col justify-between rounded-3xl bg-fuchsia-300 p-6 shadow-[0_0_0_0px_#f0abfc] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#f0abfc] sm:hover:shadow-[0_0_0_4px_#f0abfc] lg:col-span-2"
               >
@@ -186,8 +188,8 @@ export default function Home() {
                 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.35,
-                  delay: 0.15,
+                  duration: 0.4,
+                  delay: 0.8,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-lime-300 p-6 shadow-[0_0_0_0px_#bef264] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#bef264] sm:hover:shadow-[0_0_0_4px_#bef264] lg:mt-0 lg:ml-4"
               >
@@ -233,8 +235,8 @@ export default function Home() {
                 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.35,
-                  delay: 0.3,
+                  duration: 0.4,
+                  delay: 1,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-amber-400 p-6 shadow-[0_0_0_0px_#fbbf24] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#fbbf24] sm:hover:shadow-[0_0_0_4px_#fbbf24] lg:mt-4"
               >
@@ -278,8 +280,8 @@ export default function Home() {
                 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{
-                  duration: 0.35,
-                  delay: 0.45,
+                  duration: 0.5,
+                  delay: 1.2,
                 }}
                 className="mt-3 flex flex-col justify-between rounded-3xl bg-blue-300 p-6 shadow-[0_0_0_0px_#93c5fd] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_2px_#93c5fd] sm:hover:shadow-[0_0_0_4px_#93c5fd] lg:col-span-2 lg:mt-4  lg:ml-4"
               >
