@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 html{
-  @apply bg-black scroll-smooth lining-nums
+  @apply bg-black scroll-smooth lining-nums;
 }
 
 #__next {
-  @apply min-h-screen min-w-[320px] font-raleway text-white;
+  @apply min-h-screen min-w-[320px] font-raleway text-white  overflow-hidden;
 }
