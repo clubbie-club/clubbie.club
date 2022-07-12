@@ -65,6 +65,7 @@ export default function Home() {
   return (
     <div>
       <Head>
+        <title>Clubbie.club</title>
         <meta name="title" content="Clubbie.club" />
         <link rel="icon" href="/favicon.svg" />
         <meta
