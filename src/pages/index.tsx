@@ -117,13 +117,22 @@ export default function Home() {
             <br className="hidden sm:inline" />
             по созданию веб-сайтов и веб-приложений
           </m.h2>
-          <a
+          <m.a
+            initial={{
+              x: "-100%",
+              opacity: 0,
+            }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 0.3,
+            }}
             href="#contact"
             onClick={() => handleLinkClick("Contact form")}
             className="mt-8 rounded-2xl bg-white px-8 py-4 text-center font-bold text-zinc-900 shadow-[0_0_0_0px_#FFFFFF] transition-shadow duration-75 ease-in hover:shadow-[0_0_0_6px_#FFFFFF] focus:shadow-[0_0_0_6px_#FFFFFF] focus:outline-none sm:hidden"
           >
             Стать партнерами
-          </a>
+          </m.a>
           {/* /Hero */}
           {/* Cards */}
           <div className="mt-12 flex flex-1">
