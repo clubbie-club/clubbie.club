@@ -98,7 +98,7 @@ export default function Home() {
             }}
             className="text-[32px] font-bold leading-tight sm:text-[42px]"
           >
-            Разработка - это исскуство, <br className="hidden sm:inline" /> а мы
+            Разработка - это искусство, <br className="hidden sm:inline" /> а мы
             черепашки ниндзя
           </m.h1>
           <m.h2
