@@ -453,7 +453,7 @@ export default function Home() {
           <a
             target="_blank"
             onClick={() => handleLinkClick("Clubbie.club Email")}
-            href="mailto:clubbie.club@gmail.com"
+            href="mailto:dev.clubbie.club@gmail.com"
             className="ml-4 text-gray-100 transition-colors duration-75 ease-in-out hover:text-gray-200"
           >
             <span className="hidden sm:block">E-mail</span>
